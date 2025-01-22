@@ -1,0 +1,58 @@
+#write new workflow job
+name: "CodeQL"
+
+on:
+  push:
+    branches: [ "main", "master", "feat/firstworkflow" ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ "main", "master", "feat/firstworkflow" ]
+  # schedule:
+  #   - cron: '00 1 * * 3' # Weekly scan on Wednesdays at 01:00 UTC
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      matrix:
+        language: [ 'javascript', 'TypeScript' ] # Add or remove languages as needed
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Initialize the CodeQL tools
+      uses: github/codeql-action/init@v2
+      with:
+        languages: ${{ matrix.language }}
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
+
+    # Step 2: Set up Node.js environment
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16' # Specify the Node.js version (use a version compatible with your app)
+
+    # Step 3: Install dependencies
+    - name: Install dependencies
+      run: npm install
+
+    # Step 4: Build the React app
+    - name: Build React app
+      run: npm run build
+
+    # Optional Step 5: Upload build artifacts (if needed)
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-artifact
+        path: build/ # Specify the directory containing the build
