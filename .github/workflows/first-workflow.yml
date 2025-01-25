@@ -1,5 +1,5 @@
 #write new workflow job
-name: "CodeQL"
+name: "VijayCodeQL"
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
   #   - cron: '00 1 * * 3' # Weekly scan on Wednesdays at 01:00 UTC
 
 jobs:
-  analyze:
+  ReactBuildStage:
     name: Analyze
     runs-on: ubuntu-latest
 
@@ -31,7 +31,7 @@ jobs:
     - name: Initialize the CodeQL tools #static code analysis
       uses: github/codeql-action/init@v2
       with:
-        languages: ${{ matrix.language }}
+        languages: javascript', 'TypeScript'
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
@@ -55,6 +55,14 @@ jobs:
       with:
         name: nextjs-build
         path: .next/  # Update this to match the Next.js output directory
+
+    # Step 2: List directory structure
+    - name: List directory structure
+      run: |
+        echo "Directory structure:"
+        pwd
+        ls -lrt
+
 
     # # Optional Step 5: Upload build artifacts (if needed)
     # - name: Upload build artifacts
