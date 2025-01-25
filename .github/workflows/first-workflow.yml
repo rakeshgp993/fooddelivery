@@ -20,21 +20,21 @@ jobs:
       contents: read
       security-events: write
 
-    strategy:
-      matrix:
-        language: [ 'javascript', 'TypeScript' ] # Add or remove languages as needed
+    # strategy:
+    #   matrix:
+    #     language: [ 'javascript', 'TypeScript' ] # Add or remove languages as needed
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
 
     - name: Initialize the CodeQL tools #static code analysis
-      uses: github/codeql-action/init@v2
+      uses: github/codeql-action/init@v3
       with:
         languages: 'javascript'
 
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v2
+      uses: github/codeql-action/analyze@v3
 
     # Step 2: Set up Node.js environment
     - name: Set up Node.js
