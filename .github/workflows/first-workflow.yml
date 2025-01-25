@@ -50,9 +50,15 @@ jobs:
     - name: Build React app
       run: npm run build
 
-    # Optional Step 5: Upload build artifacts (if needed)
-    - name: Upload build artifacts
+    - name: Upload Build Artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: build-artifact
-        path: build/ # Specify the directory containing the build
+        name: nextjs-build
+        path: .next/  # Update this to match the Next.js output directory
+
+    # # Optional Step 5: Upload build artifacts (if needed)
+    # - name: Upload build artifacts
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: build-artifact
+    #     path: build/ # Specify the directory containing the build
