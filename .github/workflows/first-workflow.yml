@@ -28,7 +28,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Initialize the CodeQL tools
+    - name: Initialize the CodeQL tools #static code analysis
       uses: github/codeql-action/init@v2
       with:
         languages: ${{ matrix.language }}
