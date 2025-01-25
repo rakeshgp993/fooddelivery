@@ -12,7 +12,7 @@ on:
 
 jobs:
   ReactBuildStage:
-    name: Analyze
+    name: ReactBuildStage
     runs-on: ubuntu-latest
 
     permissions:
@@ -31,7 +31,7 @@ jobs:
     - name: Initialize the CodeQL tools #static code analysis
       uses: github/codeql-action/init@v2
       with:
-        languages: javascript', 'TypeScript'
+        languages: 'javascript'
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
